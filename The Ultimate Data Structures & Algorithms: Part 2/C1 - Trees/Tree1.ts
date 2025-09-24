@@ -73,6 +73,29 @@ class BinarySearch{
             return result
         }
 
+       function isBalanced(node: TreeNode | null): boolean {
+   
+   function checkHeight(node){
+      if(node === null){
+         return 0
+      }
+
+      let leftheight = checkHeight(node.left)
+      let rightheight = checkHeight(node.right)
+
+      if(leftheight === -1) return -1
+
+      if(rightheight === -1) return -1
+
+      if(Math.abs(leftheight - rightheight) > 1) return -1
+
+
+      return Math.max(leftheight,rightheight) + 1
+   }
+   return checkHeight(node) !== -1
+};
+
+           
          public static isSameTree(p: Tree1 | null, q: Tree1 | null): boolean {
            if (p === null && q === null) return true;
            if (p === null || q === null) return false;
@@ -103,4 +126,5 @@ binary.insert(binary.head,15)
 console.log("Inorder:"+binary.inorder())
 console.log("Preorder:"+binary.preorder())
 console.log("PostOrder:"+binary.postorder())
+
 
